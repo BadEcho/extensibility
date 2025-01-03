@@ -20,10 +20,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\..\src\Common\BadEcho.Common.csproj" />
+	  <ProjectReference Include="$(CorePath)\Common\BadEcho.Common.csproj" />
 	  <ProjectReference Include="..\..\src\Extensibility\BadEcho.Extensibility.csproj" />
-	  <ProjectReference Include="..\..\src\XmlConfiguration\BadEcho.XmlConfiguration.csproj" />
 	  <ProjectReference Include="..\ExtensibilityPoint.Tests\BadEcho.ExtensibilityPoint.Tests.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="test.json">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
 	</ItemGroup>
 
 </Project>

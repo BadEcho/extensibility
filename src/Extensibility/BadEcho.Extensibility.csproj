@@ -4,7 +4,7 @@
 		<Product>Bad Echo Extensibility Framework</Product>
 		<Description>Bad Echo framework for creating and hosting plugins.</Description>
 		<Title>$(Product)</Title>
-		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageReadmeFile>..\..\README.md</PackageReadmeFile>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -12,7 +12,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\Common\BadEcho.Common.csproj" />
+	  <ProjectReference Include="$(CorePath)\Common\BadEcho.Common.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

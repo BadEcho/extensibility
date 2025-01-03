@@ -13,7 +13,6 @@
 
 using BadEcho.Extensibility.Configuration;
 using BadEcho.Extensibility.Hosting;
-using BadEcho.XmlConfiguration.Extensibility;
 using Microsoft.Extensions.Configuration;
 using Xunit;
 
@@ -81,19 +80,6 @@ public class HostAdapterTests
         var configuration = configurationRoot.Get<ExtensibilityConfiguration>();
         Assert.NotNull(configuration);
 
-        var context = new PluginContext(_strategy);
-        var hostAdapter = new HostAdapter<ISegmentedContract>(context, configuration);
-
-        var proxy = RoutableProxy.Create<ISegmentedContract>(hostAdapter);
-
-        Assert.Equal(ISegmentedContract.FirstSomeMethod, proxy.SomeMethod());
-        Assert.Equal(ISegmentedContract.SecondSomeOtherMethod, proxy.SomeOtherMethod());
-    }
-
-    [Fact]
-    public void Route_TwoSegmentsProxied_ClaimedMethodsExecuted()
-    {
-        var configuration = ExtensibilityConfigurationProvider.LoadConfiguration();
         var context = new PluginContext(_strategy);
         var hostAdapter = new HostAdapter<ISegmentedContract>(context, configuration);
 

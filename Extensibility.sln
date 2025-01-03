@@ -1,0 +1,59 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35527.113
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{1699BF13-EE48-4275-8C22-5BD892B8CE4B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BadEcho.Extensibility", "src\Extensibility\BadEcho.Extensibility.csproj", "{DB1980BC-02FA-4794-BFFC-602B88922383}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "shared", "shared", "{A9D8B26B-985C-4459-A65C-7E1DB9AB3D46}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BadEcho.Common", "src\Core\src\Common\BadEcho.Common.csproj", "{E9968556-C8E8-45F7-AC17-61CC58346CB6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{E859EB08-CAFC-4B3B-BB75-1F4083F3B029}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BadEcho.Extensibility.Tests", "tests\Extensibility.Tests\BadEcho.Extensibility.Tests.csproj", "{60250EA4-86F7-45D1-8D63-D8E30090E3A8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BadEcho.ExtensibilityPoint.Tests", "tests\ExtensibilityPoint.Tests\BadEcho.ExtensibilityPoint.Tests.csproj", "{14AB3957-713A-4F9A-B2B4-146FDF0EF2C9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BadEcho.Plugin.Tests", "tests\Plugin.Tests\BadEcho.Plugin.Tests.csproj", "{028EA3B8-3712-4597-B21D-0036E115D099}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DB1980BC-02FA-4794-BFFC-602B88922383}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB1980BC-02FA-4794-BFFC-602B88922383}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB1980BC-02FA-4794-BFFC-602B88922383}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB1980BC-02FA-4794-BFFC-602B88922383}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9968556-C8E8-45F7-AC17-61CC58346CB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9968556-C8E8-45F7-AC17-61CC58346CB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9968556-C8E8-45F7-AC17-61CC58346CB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9968556-C8E8-45F7-AC17-61CC58346CB6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60250EA4-86F7-45D1-8D63-D8E30090E3A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60250EA4-86F7-45D1-8D63-D8E30090E3A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60250EA4-86F7-45D1-8D63-D8E30090E3A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60250EA4-86F7-45D1-8D63-D8E30090E3A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14AB3957-713A-4F9A-B2B4-146FDF0EF2C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14AB3957-713A-4F9A-B2B4-146FDF0EF2C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14AB3957-713A-4F9A-B2B4-146FDF0EF2C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14AB3957-713A-4F9A-B2B4-146FDF0EF2C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{028EA3B8-3712-4597-B21D-0036E115D099}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{028EA3B8-3712-4597-B21D-0036E115D099}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{028EA3B8-3712-4597-B21D-0036E115D099}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{028EA3B8-3712-4597-B21D-0036E115D099}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DB1980BC-02FA-4794-BFFC-602B88922383} = {1699BF13-EE48-4275-8C22-5BD892B8CE4B}
+		{E9968556-C8E8-45F7-AC17-61CC58346CB6} = {A9D8B26B-985C-4459-A65C-7E1DB9AB3D46}
+		{60250EA4-86F7-45D1-8D63-D8E30090E3A8} = {E859EB08-CAFC-4B3B-BB75-1F4083F3B029}
+		{14AB3957-713A-4F9A-B2B4-146FDF0EF2C9} = {E859EB08-CAFC-4B3B-BB75-1F4083F3B029}
+		{028EA3B8-3712-4597-B21D-0036E115D099} = {E859EB08-CAFC-4B3B-BB75-1F4083F3B029}
+	EndGlobalSection
+EndGlobal

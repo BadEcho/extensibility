@@ -1,7 +1,7 @@
 <Project>
 	<PropertyGroup>
-		<UniversalProperties>$([MSBuild]::GetPathOfFileAbove('Universal.build.props', '$(MSBuildThisFileDirectory)..\'))</UniversalProperties>
-		<CoreProperties Condition="Exists($(UniversalProperties))">$(UniversalProperties)</CoreProperties>
+		<RootProperties>$([MSBuild]::GetPathOfFileAbove('Root.build.props', '$(MSBuildThisFileDirectory)..\'))</RootProperties>
+		<CoreProperties Condition="Exists($(RootProperties))">$(RootProperties)</CoreProperties>
 		<CoreProperties Condition="'$(CoreProperties)' == ''">src\Core\Directory.build.props</CoreProperties>
 	</PropertyGroup>
 	<Import Project="$(CoreProperties)"/>

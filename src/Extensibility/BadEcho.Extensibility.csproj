@@ -28,6 +28,7 @@
 	    <Generator>ResXFileCodeGenerator</Generator>
 	    <LastGenOutput>Strings.Designer.cs</LastGenOutput>
 	  </EmbeddedResource>
+	  <None Include="..\..\README.md" Pack="true" PackagePath="" />
 	</ItemGroup>
 
 </Project>

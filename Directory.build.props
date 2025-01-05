@@ -1,14 +1,14 @@
 <Project>
 	<PropertyGroup>
-		<RootProperties>$([MSBuild]::GetPathOfFileAbove('Root.build.props', '$(MSBuildThisFileDirectory)..\'))</RootProperties>
-		<CoreProperties Condition="Exists($(RootProperties))">$(RootProperties)</CoreProperties>
-		<CoreProperties Condition="'$(CoreProperties)' == ''">src\Core\Directory.build.props</CoreProperties>
+		<RootProperties>$([MSBuild]::GetPathOfFileAbove('Root.build.props', '$(MSBuildThisFileDirectory)..\'))</RootProperties>		
 	</PropertyGroup>
-	<Import Project="$(CoreProperties)"/>
+	<Import Project="$(RootProperties)" Condition="Exists($(RootProperties))"/>
+	<Import Project="build\Build.props"/>
 	<PropertyGroup>
 		<RepositoryUrl>https://github.com/BadEcho/extensibility</RepositoryUrl>
 		<CorePath Condition="'$(CorePath)' == ''">$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)\src\Core\src'))</CorePath>
 	</PropertyGroup>
+
 	<!--This is needed in order to prevent inaccurate errors from being displayed during design-time.-->
 	<Target Name="DisableDesignTimeCompileCheck" AfterTargets="_CheckCompileDesignTimePrerequisite">
 		<PropertyGroup>

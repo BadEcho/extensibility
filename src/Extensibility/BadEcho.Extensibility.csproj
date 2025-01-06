@@ -4,7 +4,7 @@
 		<Product>Bad Echo Extensibility Framework</Product>
 		<Description>Bad Echo framework for creating and hosting plugins.</Description>
 		<Title>$(Product)</Title>
-		<PackageReadmeFile>..\..\README.md</PackageReadmeFile>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<IsPackable>$(ExtensibilityIsPackable)</IsPackable>
 	</PropertyGroup>
 
@@ -29,7 +29,7 @@
 	    <Generator>ResXFileCodeGenerator</Generator>
 	    <LastGenOutput>Strings.Designer.cs</LastGenOutput>
 	  </EmbeddedResource>
-	  <None Include="..\..\README.md" Pack="true" PackagePath="..\..\README.md" />
+	  <None Include="..\..\README.md" Pack="true" PackagePath="" />
 	</ItemGroup>
 
 </Project>

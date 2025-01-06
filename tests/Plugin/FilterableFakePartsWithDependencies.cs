@@ -16,7 +16,7 @@ using BadEcho.Extensibility;
 using BadEcho.Extensibility.Hosting;
 using BadEcho.Extensibility.Tests;
 
-namespace BadEcho.Plugin.Tests;
+namespace BadEcho.Plugin;
 
 [Export(typeof(IFilterableFakeDependency))]
 [Filterable(AlphaFamily.FamilyIdValue, typeof(AlphaFakeDependency))]
@@ -51,11 +51,11 @@ public class AlphaFakePartWithDependencies : IFilterableFakePartWithDependencies
 [Filterable(AlphaFamily.FamilyIdValue, typeof(AlphaFakePartWithComposedDependencies))]
 public class AlphaFakePartWithComposedDependencies : IFilterableFakePartWithComposedDependencies
 {
-    private const string DEPENDENCY_CONTRACT 
+    private const string DEPENDENCY_CONTRACT
         = nameof(AlphaFakePartWithComposedDependencies) + nameof(LocalDependency);
 
     [ImportingConstructor]
-    public AlphaFakePartWithComposedDependencies([Import(DEPENDENCY_CONTRACT)]IFilterableFakeDependency dependency)
+    public AlphaFakePartWithComposedDependencies([Import(DEPENDENCY_CONTRACT)] IFilterableFakeDependency dependency)
     {
         Dependency = dependency;
     }
@@ -69,10 +69,10 @@ public class AlphaFakePartWithComposedDependencies : IFilterableFakePartWithComp
     {
         return 0;
     }
-        
+
     [Export(typeof(IConventionProvider))]
     [Filterable(AlphaFamily.FamilyIdValue, typeof(LocalDependency))]
-    private class LocalDependency : DependencyRegistry<IFilterableFakeDependency> , IFilterable
+    private class LocalDependency : DependencyRegistry<IFilterableFakeDependency>, IFilterable
     {
         public LocalDependency()
             : base(DEPENDENCY_CONTRACT)
@@ -90,7 +90,7 @@ public class AlphaFakePartWithComposedDependencies : IFilterableFakePartWithComp
 [Filterable(AlphaFamily.FamilyIdValue, typeof(AlphaFakePartWithNonFilterableDependencies))]
 public class AlphaFakePartWithNonFilterableDependencies : IFilterableFakePartWithNonFilterableDependencies
 {
-    private const string DEPENDENCY_CONTRACT 
+    private const string DEPENDENCY_CONTRACT
         = nameof(AlphaFakePartWithNonFilterableDependencies) + nameof(LocalDependency);
 
     [ImportingConstructor]

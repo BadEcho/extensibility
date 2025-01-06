@@ -14,7 +14,7 @@
 using BadEcho.Extensibility;
 using BadEcho.Extensibility.Tests;
 
-namespace BadEcho.Plugin.Tests;
+namespace BadEcho.Plugin;
 
 [FilterableFamily(FamilyIdValue, NAME)]
 public class AlphaFamily : IFilterableFamily
@@ -36,7 +36,7 @@ public class BetaFamily : IFilterableFamily
     private const string NAME = "Beta";
 
     public Guid FamilyId
-        => new (FamilyIdValue);
+        => new(FamilyIdValue);
 
     public string Name
         => NAME;

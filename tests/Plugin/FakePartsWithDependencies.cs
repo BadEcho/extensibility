@@ -15,7 +15,7 @@ using System.Composition;
 using BadEcho.Extensibility.Hosting;
 using BadEcho.Extensibility.Tests;
 
-namespace BadEcho.Plugin.Tests;
+namespace BadEcho.Plugin;
 
 [Export(typeof(IFakePartWithDependencies))]
 public class FakePartWithDependencies : IFakePartWithDependencies
@@ -32,7 +32,7 @@ public class FakePartWithDependencies : IFakePartWithDependencies
 [Export(typeof(IFakePartWithComposedDependencies))]
 public class FakePartWithComposedDependencies : IFakePartWithComposedDependencies
 {
-    private const string DEPENDENCY_CONTRACT 
+    private const string DEPENDENCY_CONTRACT
         = nameof(FakePartWithComposedDependencies) + nameof(LocalDependency);
 
     [ImportingConstructor]

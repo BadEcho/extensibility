@@ -15,9 +15,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{E859EB08
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BadEcho.Extensibility.Tests", "tests\Extensibility.Tests\BadEcho.Extensibility.Tests.csproj", "{60250EA4-86F7-45D1-8D63-D8E30090E3A8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BadEcho.ExtensibilityPoint.Tests", "tests\ExtensibilityPoint.Tests\BadEcho.ExtensibilityPoint.Tests.csproj", "{14AB3957-713A-4F9A-B2B4-146FDF0EF2C9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BadEcho.ExtensibilityPoint", "tests\ExtensibilityPoint\BadEcho.ExtensibilityPoint.csproj", "{14AB3957-713A-4F9A-B2B4-146FDF0EF2C9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BadEcho.Plugin.Tests", "tests\Plugin.Tests\BadEcho.Plugin.Tests.csproj", "{028EA3B8-3712-4597-B21D-0036E115D099}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BadEcho.Plugin", "tests\Plugin\BadEcho.Plugin.csproj", "{028EA3B8-3712-4597-B21D-0036E115D099}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

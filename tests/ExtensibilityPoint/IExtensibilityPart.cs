@@ -11,6 +11,6 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace BadEcho.ExtensibilityPoint.Tests;
+namespace BadEcho.ExtensibilityPoint;
 
 public interface IExtensibilityPart;

@@ -17,7 +17,7 @@ using BadEcho.Extensibility;
 using BadEcho.Extensibility.Hosting;
 using BadEcho.Extensibility.Tests;
 
-namespace BadEcho.Plugin.Tests;
+namespace BadEcho.Plugin;
 
 [Export(typeof(IFilterableFakePart))]
 [Filterable(AlphaFamily.FamilyIdValue, typeof(AlphaFakePart))]
@@ -26,7 +26,7 @@ public class AlphaFakePart : IFilterableFakePart
     public Guid FamilyId
         => new(AlphaFamily.FamilyIdValue);
 
-    public int DoSomething() 
+    public int DoSomething()
         => 54;
 }
 
@@ -37,7 +37,7 @@ public class BetaFakePart : IFilterableFakePart
     public Guid FamilyId
         => new(BetaFamily.FamilyIdValue);
 
-    public int DoSomething() 
+    public int DoSomething()
         => 29290892;
 }
 
@@ -48,7 +48,7 @@ public class DeltaFakePart : IFilterableFakePart
     public Guid FamilyId
         => new(DeltaFamily.FamilyIdValue);
 
-    public int DoSomething() 
+    public int DoSomething()
         => -1;
 }
 
@@ -56,7 +56,7 @@ public class DeltaFakePart : IFilterableFakePart
 [Filterable(GammaFamily.FamilyIdValue, typeof(SharedGammaFakePart))]
 public sealed class SharedGammaFakePart : IFilterableFakePart
 {
-    public int DoSomething() 
+    public int DoSomething()
         => 0;
 
     public Guid FamilyId

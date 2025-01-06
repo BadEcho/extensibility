@@ -13,7 +13,7 @@
 
 using System.Composition.Hosting;
 using BadEcho.Extensibility.Hosting;
-using BadEcho.ExtensibilityPoint.Tests;
+using BadEcho.ExtensibilityPoint;
 using Xunit;
 
 namespace BadEcho.Extensibility.Tests;
@@ -34,7 +34,7 @@ public class GlobalPluginContextStrategyTests
         var container = _strategy.CreateContainer();
 
         var parts = container.GetExports<IFakePart>();
-            
+
         Assert.NotEmpty(parts);
     }
 
@@ -109,7 +109,7 @@ public class GlobalPluginContextStrategyTests
         DependencyRegistry<IFakeDependency>
             .ExecuteWhileArmed(new ComposedDependency(),
                                () => part = container.GetExport<IFakePartWithComposedDependencies>());
-            
+
         var newDependency = new ComposedDependency();
 
         IFakePartWithComposedDependencies newPart = null!;
@@ -137,7 +137,7 @@ public class GlobalPluginContextStrategyTests
     public void GetExports_ExtensibilityPoint_ReturnsPart()
     {
         var container = _strategy.CreateContainer();
-            
+
         Assert.NotNull(container.GetExport<IExtensibilityPart>());
     }
 

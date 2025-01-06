@@ -14,7 +14,7 @@
 using System.Composition;
 using BadEcho.Extensibility.Tests;
 
-namespace BadEcho.Plugin.Tests;
+namespace BadEcho.Plugin;
 
 [Export(typeof(IUniqueRequirement))]
 public sealed class UniqueRequirement : IUniqueRequirement;

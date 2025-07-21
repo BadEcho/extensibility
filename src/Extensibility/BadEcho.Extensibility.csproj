@@ -1,9 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<Product>Bad Echo Extensibility Framework</Product>
+		<Title>Bad Echo Extensibility Framework</Title>
+		<AssemblyTitle>$(Title)</AssemblyTitle>
+		<Product>$(Title)</Product>
 		<Description>Bad Echo framework for creating and hosting plugins.</Description>
-		<Title>$(Product)</Title>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<IsPackable>$(ExtensibilityIsPackable)</IsPackable>
 	</PropertyGroup>
@@ -13,23 +14,23 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="$(CorePath)\Common\BadEcho.Common.csproj" />
+		<ProjectReference Include="$(CorePath)\Common\BadEcho.Common.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="Properties\Strings.Designer.cs">
-	    <DesignTime>True</DesignTime>
-	    <AutoGen>True</AutoGen>
-	    <DependentUpon>Strings.resx</DependentUpon>
-	  </Compile>
+		<Compile Update="Properties\Strings.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>Strings.resx</DependentUpon>
+		</Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <EmbeddedResource Update="Properties\Strings.resx">
-	    <Generator>ResXFileCodeGenerator</Generator>
-	    <LastGenOutput>Strings.Designer.cs</LastGenOutput>
-	  </EmbeddedResource>
-	  <None Include="..\..\README.md" Pack="true" PackagePath="" />
+		<EmbeddedResource Update="Properties\Strings.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>Strings.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<None Include="..\..\README.md" Pack="true" PackagePath="" />
 	</ItemGroup>
 
 </Project>

@@ -53,7 +53,7 @@ internal sealed class PluginStore : IDisposable
         _configuration = configuration;
 
         _globalContext = new Lazy<PluginContext>(
-            () => new PluginContext(new GlobalPluginContextStrategy(configuration.GetFullPathToPlugins())),
+            () => new PluginContext(new GlobalPluginContextStrategy(configuration)),
             LAZY_MODE);
 
         _filterableFamilies = new Lazy<IReadOnlyDictionary<Guid, IFilterableFamilyMetadata>>(
@@ -162,7 +162,7 @@ internal sealed class PluginStore : IDisposable
                                                    .Select(f => f.Metadata.FamilyId);
         foreach (var familyId in familyIds)
         {
-            var filterableStrategy = new FilterablePluginContextStrategy(_configuration.GetFullPathToPlugins(), familyId);
+            var filterableStrategy = new FilterablePluginContextStrategy(_configuration, familyId);
 
             filterableContexts.GetOrAdd(familyId, () => new PluginContext(filterableStrategy));
         }

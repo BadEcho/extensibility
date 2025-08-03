@@ -11,6 +11,7 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
+using BadEcho.Extensibility.Configuration;
 using BadEcho.Extensibility.Hosting;
 using BadEcho.ExtensibilityPoint;
 using Xunit;
@@ -19,15 +20,17 @@ namespace BadEcho.Extensibility.Tests;
 
 public class FilterablePluginContextStrategyTests
 {
-    private readonly string _path = Path.Combine(Environment.CurrentDirectory, "testPlugins");
-
+    private readonly ExtensibilityConfiguration _configuration = new()
+                                                                 {
+                                                                     PluginDirectory = "testPlugins"
+                                                                 };
     [Theory]
     [InlineData(FakeFilterableIds.AlphaFakeIdValue)]
     [InlineData(FakeFilterableIds.BetaFakeIdValue)]
     [InlineData(FakeFilterableIds.GammaFakeIdValue)]
     public void GetExports_FilterableTypes_ReturnsPartsFromFamily(string fakeId)
     {
-        var strategy = new FilterablePluginContextStrategy(_path, new Guid(fakeId));
+        var strategy = new FilterablePluginContextStrategy(_configuration, new Guid(fakeId));
         var container = strategy.CreateContainer();
         var parts = container.GetExports<IFilterableFakePart>().ToList();
 
@@ -40,7 +43,7 @@ public class FilterablePluginContextStrategyTests
     [InlineData(FakeFilterableIds.DeltaFakeIdValue)]
     public void GetExport_SingleFilterableTypes_ReturnsPartFromFamily(string fakeId)
     {
-        var strategy = new FilterablePluginContextStrategy(_path, new Guid(fakeId));
+        var strategy = new FilterablePluginContextStrategy(_configuration, new Guid(fakeId));
         var container = strategy.CreateContainer();
         var part = container.GetExport<IFilterableFakePart>();
 
@@ -51,7 +54,7 @@ public class FilterablePluginContextStrategyTests
     [Fact]
     public void GetExport_BetaFilterableType_IsNonShared()
     {
-        var strategy = new FilterablePluginContextStrategy(_path, FakeFilterableIds.BetaFakeId);
+        var strategy = new FilterablePluginContextStrategy(_configuration, FakeFilterableIds.BetaFakeId);
         var container = strategy.CreateContainer();
         var firstPart = container.GetExport<IFilterableFakePart>();
         var secondPart = container.GetExport<IFilterableFakePart>();
@@ -62,7 +65,7 @@ public class FilterablePluginContextStrategyTests
     [Fact]
     public void GetExport_GammaFilterableType_IsShared()
     {
-        var strategy = new FilterablePluginContextStrategy(_path, FakeFilterableIds.GammaFakeId);
+        var strategy = new FilterablePluginContextStrategy(_configuration, FakeFilterableIds.GammaFakeId);
         var container = strategy.CreateContainer();
         var firstPart = container.GetExport<IFilterableFakePart>();
         var secondPart = container.GetExport<IFilterableFakePart>();
@@ -73,7 +76,7 @@ public class FilterablePluginContextStrategyTests
     [Fact]
     public void GetExport_IFilterableFakePartWithDependencies_ReturnsPartWithDependency()
     {
-        var strategy = new FilterablePluginContextStrategy(_path, FakeFilterableIds.AlphaFakeId);
+        var strategy = new FilterablePluginContextStrategy(_configuration, FakeFilterableIds.AlphaFakeId);
         var container = strategy.CreateContainer();
         var part = container.GetExport<IFilterableFakePartWithDependencies>();
         var dependency = container.GetExport<IFilterableFakeDependency>();
@@ -87,7 +90,7 @@ public class FilterablePluginContextStrategyTests
     [Fact]
     public void GetExport_IFilterableFakePartWithComposedDependencies_ReturnsPartWithDependency()
     {
-        var strategy = new FilterablePluginContextStrategy(_path, FakeFilterableIds.AlphaFakeId);
+        var strategy = new FilterablePluginContextStrategy(_configuration, FakeFilterableIds.AlphaFakeId);
         var container = strategy.CreateContainer();
         var dependency = container.GetExport<IFilterableFakeDependency>();
 
@@ -104,7 +107,7 @@ public class FilterablePluginContextStrategyTests
     [Fact]
     public void GetExport_IFilterableFakePartWithComposedDependencies_IsRecomposed()
     {
-        var strategy = new FilterablePluginContextStrategy(_path, FakeFilterableIds.AlphaFakeId);
+        var strategy = new FilterablePluginContextStrategy(_configuration, FakeFilterableIds.AlphaFakeId);
         var container = strategy.CreateContainer();
         var dependency = container.GetExport<IFilterableFakeDependency>();
 
@@ -131,7 +134,7 @@ public class FilterablePluginContextStrategyTests
     [Fact]
     public void GetExport_IFilterableFakePartWithNonFilterableDependencies_ReturnsPartWithDependency()
     {
-        var strategy = new FilterablePluginContextStrategy(_path, FakeFilterableIds.AlphaFakeId);
+        var strategy = new FilterablePluginContextStrategy(_configuration, FakeFilterableIds.AlphaFakeId);
         var container = strategy.CreateContainer();
         var dependency = new ComposedDependency();
 
@@ -149,7 +152,7 @@ public class FilterablePluginContextStrategyTests
     [Fact]
     public void GetExports_ExtensibilityPart_ReturnsEmpty()
     {
-        var strategy = new FilterablePluginContextStrategy(_path, FakeFilterableIds.AlphaFakeId);
+        var strategy = new FilterablePluginContextStrategy(_configuration, FakeFilterableIds.AlphaFakeId);
         var container = strategy.CreateContainer();
 
         Assert.Empty(container.GetExports<IExtensibilityPart>());

@@ -11,6 +11,7 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
+using BadEcho.Extensibility.Configuration;
 using BadEcho.Extensibility.Hosting;
 using Xunit;
 
@@ -26,8 +27,8 @@ public class PluginContextTests
 
     public PluginContextTests()
     {
-        var path = Path.Combine(Environment.CurrentDirectory, "testPlugins");
-        var strategy = new GlobalPluginContextStrategy(path);
+        var configuration = new ExtensibilityConfiguration { PluginDirectory = "testPlugins" };
+        var strategy = new GlobalPluginContextStrategy(configuration);
 
         _context = new PluginContext(strategy);
     }

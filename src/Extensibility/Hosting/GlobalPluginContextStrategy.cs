@@ -13,6 +13,7 @@
 
 using System.Composition.Convention;
 using System.Composition.Hosting;
+using BadEcho.Extensibility.Configuration;
 
 namespace BadEcho.Extensibility.Hosting;
 
@@ -27,26 +28,30 @@ namespace BadEcho.Extensibility.Hosting;
 /// </remarks>
 internal sealed class GlobalPluginContextStrategy : IPluginContextStrategy
 {
-    private readonly string _pluginDirectory;
+    private readonly ExtensibilityConfiguration _configuration;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="GlobalPluginContextStrategy"/> class.
     /// </summary>
-    /// <param name="pluginDirectory">Full path to the directory where plugins will be loaded from.</param>
-    public GlobalPluginContextStrategy(string pluginDirectory) 
-        => _pluginDirectory = pluginDirectory;
+    /// <param name="configuration">
+    /// Configuration for the Extensibility framework, used to determine where plugins will be loaded from.
+    /// </param>
+    public GlobalPluginContextStrategy(ExtensibilityConfiguration configuration)
+        => _configuration = configuration;  
 
     /// <inheritdoc/>
     public CompositionHost CreateContainer()
     {
-        var configuration = new ContainerConfiguration()
-                            .WithDirectory(_pluginDirectory)
-                            .WithExtensibilityPoints();
+        var builder = new ContainerConfiguration()
+            .WithExtensibilityPoints();
+        
+        if (_configuration.LoadPlugins)
+            builder.WithDirectory(_configuration.GetFullPathToPlugins());
 
-        ConventionBuilder conventions = this.LoadConventions(configuration);
+        ConventionBuilder conventions = this.LoadConventions(builder);
 
-        configuration.WithDefaultConventions(conventions);
+        builder.WithDefaultConventions(conventions);
 
-        return configuration.CreateContainer();
+        return builder.CreateContainer();
     }
 }

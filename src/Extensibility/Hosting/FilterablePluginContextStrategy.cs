@@ -11,10 +11,10 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
+using BadEcho.Extensibility.Configuration;
+using BadEcho.Extensions;
 using System.Composition.Convention;
 using System.Composition.Hosting;
-using System.Reflection;
-using BadEcho.Extensions;
 
 namespace BadEcho.Extensibility.Hosting;
 
@@ -24,35 +24,37 @@ namespace BadEcho.Extensibility.Hosting;
 /// </summary>
 internal sealed class FilterablePluginContextStrategy : IPluginContextStrategy
 {
-    private readonly string _pluginDirectory;
+    private readonly ExtensibilityConfiguration _configuration;
     private readonly Guid _familyId;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="FilterablePluginContextStrategy"/> class.
     /// </summary>
-    /// <param name="pluginDirectory">Full path to the directory where plugins will be loaded from.</param>
+    /// <param name="configuration">
+    /// Configuration for the Extensibility framework, used to determine where plugins will be loaded from.
+    /// </param>
     /// <param name="familyId">Identifies the filterable family of plugins to allow through the filter.</param>
-    public FilterablePluginContextStrategy(string pluginDirectory, Guid familyId)
+    public FilterablePluginContextStrategy(ExtensibilityConfiguration configuration, Guid familyId)
     {
-        _pluginDirectory = pluginDirectory;
+        _configuration = configuration;
         _familyId = familyId;
     }
 
     /// <inheritdoc/>
     public CompositionHost CreateContainer()
-    {
-        var globalConfiguration = new ContainerConfiguration()
+    {   // We first build a global container, filtering from it all matching part types into a family-specific container
+        // that the generated context will use to compose its objects.
+        var globalBuilder = new ContainerConfiguration()
             .WithExtensibilityPoints();
 
-        IEnumerable<Assembly> assemblies
-            = globalConfiguration.LoadFromDirectory(_pluginDirectory);
+        if (_configuration.LoadPlugins)
+            globalBuilder.WithDirectory(_configuration.GetFullPathToPlugins());
 
-        ConventionBuilder conventions
-            = this.LoadConventions(globalConfiguration.WithAssemblies(assemblies));
+        ConventionBuilder conventions = this.LoadConventions(globalBuilder);
 
-        globalConfiguration.WithDefaultConventions(conventions);
+        globalBuilder.WithDefaultConventions(conventions);
 
-        IEnumerable<Type> matchingPartTypes = FindMatchingPartTypes(globalConfiguration);
+        IEnumerable<Type> matchingPartTypes = FindMatchingPartTypes(globalBuilder);
             
         return new ContainerConfiguration()
                .WithParts(matchingPartTypes)

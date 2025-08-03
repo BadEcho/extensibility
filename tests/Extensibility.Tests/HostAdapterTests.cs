@@ -27,8 +27,9 @@ public class HostAdapterTests
 
     public HostAdapterTests()
     {
-        var path = Path.Combine(Environment.CurrentDirectory, "testPlugins");
-        _strategy = new GlobalPluginContextStrategy(path);
+        var configuration = new ExtensibilityConfiguration { PluginDirectory = "testPlugins" };
+
+        _strategy = new GlobalPluginContextStrategy(configuration);
     }
 
     [Fact]
@@ -56,7 +57,7 @@ public class HostAdapterTests
     }
 
     [Fact]
-    public void Route_XmlConfig_ClaimedMethodsExecuted()
+    public void Route_ProgrammaticConfig_ClaimedMethodsExecuted()
     {
         var configuration = CreateAlphaPrimaryConfiguration();
         var context = new PluginContext(_strategy);

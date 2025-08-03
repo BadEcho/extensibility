@@ -50,31 +50,6 @@ public static class CompositionExtensions
     /// <returns>An object that can be used to further configure the container.</returns>
     public static ContainerConfiguration WithDirectory(this ContainerConfiguration configuration, string path)
     {
-        var assemblies = configuration.LoadFromDirectory(path);
-
-        return configuration.WithAssemblies(assemblies);
-    }
-
-    /// <summary>
-    /// Adds part types from assemblies loaded into the current context that are marked as extensibility points.
-    /// </summary>
-    /// <param name="configuration">The current container configuration.</param>
-    /// <returns>An object that can be used to further configure the container.</returns>
-    public static ContainerConfiguration WithExtensibilityPoints(this ContainerConfiguration configuration)
-    {
-        Require.NotNull(configuration, nameof(configuration));
-
-        return configuration.WithAssemblies(_ExtensibilityPoints);
-    }
-
-    /// <summary>
-    /// Loads all assemblies found in the specified directory for the purposes of exported part discovery.
-    /// </summary>
-    /// <param name="configuration">The current container configuration.</param>
-    /// <param name="path">The directory containing the assemblies to load.</param>
-    /// <returns>A collection of <see cref="Assembly"/> objects found at <c>path</c>.</returns>
-    internal static IEnumerable<Assembly> LoadFromDirectory(this ContainerConfiguration configuration, string path)
-    {
         Require.NotNull(configuration, nameof(configuration));
 
         var assemblies = new List<Assembly>();
@@ -98,7 +73,19 @@ public static class CompositionExtensions
             }
         }
 
-        return assemblies;
+        return configuration.WithAssemblies(assemblies);
+    }
+
+    /// <summary>
+    /// Adds part types from assemblies loaded into the current context that are marked as extensibility points.
+    /// </summary>
+    /// <param name="configuration">The current container configuration.</param>
+    /// <returns>An object that can be used to further configure the container.</returns>
+    public static ContainerConfiguration WithExtensibilityPoints(this ContainerConfiguration configuration)
+    {
+        Require.NotNull(configuration, nameof(configuration));
+
+        return configuration.WithAssemblies(_ExtensibilityPoints);
     }
 
     private static void HandleAssemblyLoad(object? sender, AssemblyLoadEventArgs args)

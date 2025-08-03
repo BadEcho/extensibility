@@ -14,25 +14,19 @@
 namespace BadEcho.Extensibility.Configuration;
 
 /// <summary>
-/// Provides configuration settings for a contract being segmented by one or more call-routable plugins,
-/// suitable for binding against with a generic configuration provider (i.e. Microsoft's IConfiguration binder).
+/// Provides configuration settings for a contract being segmented by one or more call-routable plugins.
 /// </summary>
-public sealed class ContractConfiguration : IContractConfiguration
+public sealed class ContractConfiguration
 {
-    IEnumerable<IRoutablePluginConfiguration> IContractConfiguration.RoutablePlugins
-        => RoutablePlugins ?? Enumerable.Empty<IRoutablePluginConfiguration>();
-
-    /// <inheritdoc/>
+    /// <summary>
+    /// Gets or sets the type name of the contract being segmented.
+    /// </summary>
     public string Name 
-    { get; init; } = string.Empty;
+    { get; set; } = string.Empty;
 
-    /// <inheritdoc cref="IContractConfiguration.RoutablePlugins"/>
-    /// <remarks>
-    /// This property exists in order to provide a configuration binder with a concrete type which it will be able
-    /// to instantiate (<see cref="RoutablePluginConfiguration"/>), as well as to provide a property that has no
-    /// default value assigned to it (which causes issues with some binders) while maintaining the property's
-    /// non-nullability contract found on the <see cref="IContractConfiguration"/> interface.
-    /// </remarks>
-    public IEnumerable<RoutablePluginConfiguration>? RoutablePlugins 
-    { get; init; }
+    /// <summary>
+    /// Gets the collection of call-routable plugins that segment the represented contract.
+    /// </summary>
+    public ICollection<RoutablePluginConfiguration> RoutablePlugins
+    { get; init; } = [];
 }

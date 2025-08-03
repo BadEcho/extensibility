@@ -28,7 +28,7 @@ internal sealed class PluginStore : IDisposable
     private readonly ConcurrentDictionary<Type, IHostAdapter> _hostAdapters
         = new();
 
-    private readonly IExtensibilityConfiguration _configuration;
+    private readonly ExtensibilityConfiguration _configuration;
 
     private readonly ConcurrentDictionary<Assembly, PluginContext> _localContexts 
         = new();
@@ -46,7 +46,7 @@ internal sealed class PluginStore : IDisposable
     /// Configuration for the Extensibility framework, used to determine where plugins are loaded into the store from,
     /// among other things.
     /// </param>
-    public PluginStore(IExtensibilityConfiguration configuration)
+    public PluginStore(ExtensibilityConfiguration configuration)
     {
         Require.NotNull(configuration, nameof(configuration));
 

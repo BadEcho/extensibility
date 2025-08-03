@@ -30,8 +30,7 @@ public static class PluginHost
     private static readonly MalleableLazy<PluginStore> _Store
         = new(InitializeStore, LazyThreadSafetyMode.ExecutionAndPublication);
 
-    private static IExtensibilityConfiguration _Configuration
-        = new ExtensibilityConfiguration();
+    private static ExtensibilityConfiguration _Configuration = new();
 
     /// <summary>
     /// Gets the current plugin store in use by the host.
@@ -311,7 +310,7 @@ public static class PluginHost
     /// If the inner <see cref="PluginStore"/> has not yet been initialized, this will leave it in an uninitialized state,
     /// and instead prime it so that <c>configuration</c> is used instead of the configuration defaults.
     /// </remarks>
-    public static void UpdateConfiguration(IExtensibilityConfiguration configuration)
+    public static void UpdateConfiguration(ExtensibilityConfiguration configuration)
     {
         Require.NotNull(configuration, nameof(configuration));
 

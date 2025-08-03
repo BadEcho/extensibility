@@ -36,7 +36,7 @@ public sealed class HostAdapter<T> : IHostAdapter
     /// <param name="configuration">
     /// Configuration for the Extensibility framework containing call-routable plugin information.
     /// </param>
-    internal HostAdapter(PluginContext context, IExtensibilityConfiguration configuration)
+    internal HostAdapter(PluginContext context, ExtensibilityConfiguration configuration)
     {
         Require.NotNull(context, nameof(context));
         Require.NotNull(configuration, nameof(configuration));
@@ -45,7 +45,7 @@ public sealed class HostAdapter<T> : IHostAdapter
             = context.Load<IPluginAdapter<T>, RoutableMetadataView>()
                      .ToDictionary(k => k.Metadata.PluginId, v => v.Value);
 
-        IContractConfiguration contractConfiguration = FindContractConfiguration(configuration);
+        ContractConfiguration contractConfiguration = FindContractConfiguration(configuration);
 
         _routingTable = CreateRoutingTable(contractConfiguration, adapters);
     }
@@ -73,11 +73,11 @@ public sealed class HostAdapter<T> : IHostAdapter
         return methodAdapter.Contract;
     }
 
-    private static IContractConfiguration FindContractConfiguration(IExtensibilityConfiguration configuration)
+    private static ContractConfiguration FindContractConfiguration(ExtensibilityConfiguration configuration)
     {
         string name = typeof(T).Name;
 
-        IContractConfiguration? contractConfiguration
+        ContractConfiguration? contractConfiguration
             = configuration.SegmentedContracts.FirstOrDefault(c => c.Name == name);
 
         return contractConfiguration
@@ -85,12 +85,12 @@ public sealed class HostAdapter<T> : IHostAdapter
     }
 
     private static Dictionary<string, IPluginAdapter<T>> CreateRoutingTable(
-        IContractConfiguration configuration,
+        ContractConfiguration configuration,
         IDictionary<Guid, IPluginAdapter<T>> adapters)
     {
         Guid primaryId = configuration.RoutablePlugins.First(p => p.Primary).Id;
             
-        IEnumerable<IRoutablePluginConfiguration> nonPrimaryPlugins
+        IEnumerable<RoutablePluginConfiguration> nonPrimaryPlugins
             = configuration.RoutablePlugins.Where(p => p.Id != primaryId);
 
         Dictionary<string, IPluginAdapter<T>> routingTable

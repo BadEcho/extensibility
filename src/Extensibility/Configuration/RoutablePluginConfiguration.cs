@@ -14,28 +14,26 @@
 namespace BadEcho.Extensibility.Configuration;
 
 /// <summary>
-/// Provides configuration settings for a call-routable plugin suitable for binding against with a
-/// generic configuration provider (i.e. Microsoft's IConfiguration binder).
+/// Provides configuration settings for a call-routable plugin.
 /// </summary>
-public sealed class RoutablePluginConfiguration : IRoutablePluginConfiguration
+public sealed class RoutablePluginConfiguration
 {
-    IEnumerable<string> IRoutablePluginConfiguration.MethodClaims
-        => MethodClaims ?? [];
-
-    /// <inheritdoc/>
+    /// <summary>
+    /// Gets or sets the identifying <see cref="Guid"/> for the call-routable plugin.
+    /// </summary>
     public Guid Id 
-    { get; init; }
+    { get; set; }
 
-    /// <inheritdoc/>
+    /// <summary>
+    /// Gets or sets a value indicating whether the represented plugin is the primary call-routable plugin
+    /// for a particular context.
+    /// </summary>
     public bool Primary 
-    { get; init; }
+    { get; set; }
 
-    /// <inheritdoc cref="IRoutablePluginConfiguration.MethodClaims"/>
-    /// <remarks>
-    /// This property exists in order to provide a configuration binder with a property that has no default value
-    /// assigned to it (which causes issues with some binders) while maintaining the property's non-nullability
-    /// contract found on the <see cref="IRoutablePluginConfiguration"/> interface.
-    /// </remarks>
-    public IEnumerable<string>? MethodClaims 
-    { get; init; }
+    /// <summary>
+    /// Gets the collection of names for methods claimed by the represented call-routable plugin.
+    /// </summary>
+    public ICollection<string> MethodClaims
+    { get; init; } = [];
 }

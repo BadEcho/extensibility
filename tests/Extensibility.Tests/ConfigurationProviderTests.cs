@@ -48,7 +48,8 @@ public class ConfigurationProviderTests
         Assert.NotNull(contracts);
         Assert.Single(contracts);
     }
-    private static void ValidateConfiguration(IExtensibilityConfiguration extensibility)
+
+    private static void ValidateConfiguration(ExtensibilityConfiguration extensibility)
     {
         Assert.Equal("testPlugins", extensibility.PluginDirectory);
         Assert.NotEmpty(extensibility.SegmentedContracts);

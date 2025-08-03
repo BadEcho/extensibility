@@ -100,10 +100,18 @@ public abstract class DependencyRegistry<T> : IConventionProvider
     {
         Require.NotNull(conventions, nameof(conventions));
 
-        conventions.ForType(GetType())
-                   .ExportProperties(p => p.Name == nameof(Dependency),
-                                     (_, ex) => ex.AsContractName(_contractName));
+        var partConventions = conventions.ForType(GetType())
+                                         .ExportProperties(p => p.Name == nameof(Dependency),
+                                                           (_, ex) => ex.AsContractName(_contractName));
+        OnConfigureRules(partConventions);
     }
+
+    /// <summary>
+    /// Called when the registry is configuring rules for its pluggable part.
+    /// </summary>
+    /// <param name="partsConventions">A convention builder for the registry's pluggable part.</param>
+    protected virtual void OnConfigureRules(PartConventionBuilder partsConventions)
+    { }
 
     /// <summary>
     /// Retrieves the dependency this registry was armed with.

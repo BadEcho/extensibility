@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<Title>Bad Echo Hosting Extensions</Title>
+		<AssemblyTitle>$(Title)</AssemblyTitle>
+		<Product>$(Title)</Product>
+		<Description>Integrates the Bad Echo Extensibility framework with Microsoft.Extensions.Hosting and its dependency injection container.</Description>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<IsPackable>$(ExtensibilityIsPackable)</IsPackable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="README.md" Pack="true" PackagePath="" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.7" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Extensibility\BadEcho.Extensibility.csproj" />
+	</ItemGroup>
+
+</Project>

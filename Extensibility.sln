@@ -19,6 +19,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BadEcho.ExtensibilityPoint"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BadEcho.Plugin", "tests\Plugin\BadEcho.Plugin.csproj", "{028EA3B8-3712-4597-B21D-0036E115D099}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BadEcho.Extensibility.Hosting", "src\Extensibility.Hosting\BadEcho.Extensibility.Hosting.csproj", "{1762D574-1952-42B4-B87F-369D83524F6D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BadEcho.Extensibility.Hosting.Tests", "tests\Extensibility.Hosting.Tests\BadEcho.Extensibility.Hosting.Tests.csproj", "{BB30C030-9B66-4091-80DD-60BB66B6B6E8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +49,14 @@ Global
 		{028EA3B8-3712-4597-B21D-0036E115D099}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{028EA3B8-3712-4597-B21D-0036E115D099}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{028EA3B8-3712-4597-B21D-0036E115D099}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1762D574-1952-42B4-B87F-369D83524F6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1762D574-1952-42B4-B87F-369D83524F6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1762D574-1952-42B4-B87F-369D83524F6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1762D574-1952-42B4-B87F-369D83524F6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB30C030-9B66-4091-80DD-60BB66B6B6E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB30C030-9B66-4091-80DD-60BB66B6B6E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB30C030-9B66-4091-80DD-60BB66B6B6E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB30C030-9B66-4091-80DD-60BB66B6B6E8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -55,5 +67,10 @@ Global
 		{60250EA4-86F7-45D1-8D63-D8E30090E3A8} = {E859EB08-CAFC-4B3B-BB75-1F4083F3B029}
 		{14AB3957-713A-4F9A-B2B4-146FDF0EF2C9} = {E859EB08-CAFC-4B3B-BB75-1F4083F3B029}
 		{028EA3B8-3712-4597-B21D-0036E115D099} = {E859EB08-CAFC-4B3B-BB75-1F4083F3B029}
+		{1762D574-1952-42B4-B87F-369D83524F6D} = {1699BF13-EE48-4275-8C22-5BD892B8CE4B}
+		{BB30C030-9B66-4091-80DD-60BB66B6B6E8} = {E859EB08-CAFC-4B3B-BB75-1F4083F3B029}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {31D112AD-D272-411D-871E-C4E9557F2056}
 	EndGlobalSection
 EndGlobal

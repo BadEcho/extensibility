@@ -19,11 +19,11 @@ namespace BadEcho.Extensibility.Tests;
 public static class Initializer
 {
     /// <suppressions>
-    /// ReSharper disable UnusedVariable
+    /// ReSharper disable ObjectCreationAsStatement
     /// </suppressions>
     [ModuleInitializer]
     public static void EnsureExtensibilityPointsLoaded()
     {
-        var part = new ExtensibilityPart();
+        new ExtensibilityPart();
     }
 }

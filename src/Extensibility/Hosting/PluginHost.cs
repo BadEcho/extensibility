@@ -121,6 +121,16 @@ public static class PluginHost
         => Store.GlobalContext.Load<TContract>();
 
     /// <summary>
+    /// Retrieves a globally available plugin-provided export fulfilling the specified generic contract that is required by
+    /// the caller in order to ensure its proper operation with the expectation that the contract implementation can only
+    /// be considered valid if there is one and only one export available.
+    /// </summary>
+    /// <typeparam name="TContract">The contract type whose export should be loaded.</typeparam>
+    /// <returns>A collection of exported <typeparamref name="TContract"/> values.</returns>
+    public static TContract LoadRequirement<TContract>()
+        => LoadSingle<TContract>(Store.GlobalContext);
+
+    /// <summary>
     /// Retrieves the plugin-provided export fulfilling the specified generic contract type that belongs to the specified
     /// filterable family.
     /// </summary>
@@ -346,10 +356,12 @@ public static class PluginHost
         return lazyParts.Any();
     }
 
-    private static TContract LoadLocally<TContract>(Assembly assembly)
+    private static TContract LoadLocally<TContract>(Assembly assembly) 
+        => LoadSingle<TContract>(Store.LoadContext(assembly));
+
+    private static TContract LoadSingle<TContract>(PluginContext context)
     {
-        var parts = Store.LoadContext(assembly)
-                         .Load<TContract>();
+        var parts = context.Load<TContract>();
 
         TContract? uniquePart = default;
 
@@ -358,7 +370,7 @@ public static class PluginHost
             if (uniquePart != null)
             {
                 throw new InvalidOperationException(
-                    Strings.MultipleExportsFoundForLocalContract.InvariantFormat(typeof(TContract)));
+                    Strings.MultipleExportsFoundForRequiredContract.InvariantFormat(typeof(TContract)));
             }
 
             uniquePart = part;
@@ -367,7 +379,7 @@ public static class PluginHost
         if (uniquePart == null)
         {
             throw new InvalidOperationException(
-                Strings.NoExportFoundForLocalContract.InvariantFormat(typeof(TContract)));
+                Strings.NoExportFoundForRequiredContract.InvariantFormat(typeof(TContract)));
         }
 
         return uniquePart;

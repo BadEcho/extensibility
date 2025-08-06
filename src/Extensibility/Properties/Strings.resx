@@ -132,8 +132,8 @@
   <data name="MultipleExportsFoundForFamily" xml:space="preserve">
     <value>Multiple exports for contract type '{0}' belong to the '{1}' filterable family; any part beyond the first of its type from a filterable context is ignored.</value>
   </data>
-  <data name="MultipleExportsFoundForLocalContract" xml:space="preserve">
-    <value>Multiple exports for the locally exported contract type '{0}' were found. Only a single provider should ever be available for contract types meant to be loaded from a local context.</value>
+  <data name="MultipleExportsFoundForRequiredContract" xml:space="preserve">
+    <value>Multiple exports for the required contract type '{0}' were found. Only a single provider should ever be available for caller-required contract types.</value>
   </data>
   <data name="NoContractInConfiguration" xml:space="preserve">
     <value>Extensibility configuration lacks registration for contract '{0}'.</value>
@@ -144,8 +144,8 @@
   <data name="NoExportFoundForFamily" xml:space="preserve">
     <value>No export for contract type '{0}' belongs to the '{1}' filterable family.</value>
   </data>
-  <data name="NoExportFoundForLocalContract" xml:space="preserve">
-    <value>No local export for the contract type '{0}' was found. If this is an expected contract, then it should be exported within the consuming component's own assembly. If expectancy is tenuous, check for support via the appropriate methods provided by the plugin host system first.</value>
+  <data name="NoExportFoundForRequiredContract" xml:space="preserve">
+    <value>No export for the required contract type '{0}' was found.</value>
   </data>
   <data name="ProcessCannotExportContracts" xml:space="preserve">
     <value>The executing process is unmanaged; therefore, no contract implementation is able to be exported by it.</value>

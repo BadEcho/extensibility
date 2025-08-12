@@ -54,7 +54,6 @@ public static class PluginHost
     /// <summary>
     /// Determines if the functionality provided by the specified generic contract is available locally from the executing
     /// process.
-    /// environment.
     /// </summary>
     /// <typeparam name="TContract">The contract type to check for available exports.</typeparam>
     /// <returns>True if <typeparamref name="TContract"/> has exports provided; otherwise, false.</returns>

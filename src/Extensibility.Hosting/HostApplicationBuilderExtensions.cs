@@ -19,7 +19,7 @@ using IConfigurationProvider = BadEcho.Configuration.IConfigurationProvider;
 namespace BadEcho.Extensibility.Hosting;
 
 /// <summary>
-/// Provides extensions methods for integrating the Bad Echo Extensibility framework with a hosted application.
+/// Provides extension methods for integrating the Bad Echo Extensibility framework with a hosted application.
 /// </summary>
 public static class HostApplicationBuilderExtensions
 {

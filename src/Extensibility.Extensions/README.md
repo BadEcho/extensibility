@@ -1,7 +1,7 @@
-# Bad Echo Hosting Extensions
+# Bad Echo Extensibility Framework Extensions
 [![Discord](https://img.shields.io/discord/348353194801364992?style=flat-square&label=Discord&logo=discord&logoColor=white&color=7289DA)](https://discord.gg/omni) 
 
-The `BadEcho.Extensibility.Hosting` library integrates the Bad Echo Extensibility framework with Microsoft.Extensions.Hosting and its dependency injection container. Using this library will allow for various services and features registered with an application host to be able to be discovered using the Extensibility framework's plugin host.
+The `BadEcho.Extensibility.Extensions` library integrates the Bad Echo Extensibility framework with the Microsoft.Extensions.* family of libraries and the dependency injection container they use. Using this library will allow for various services and features registered with an application host to be able to be discovered using the Extensibility framework's plugin host.
 
 This package exists to be used by specific Bad Echo applications, but is licensed under the GNU Affero General Public License so that others may enjoy it as well; see the accompanying [license](https://github.com/BadEcho/extensibility/blob/master/LICENSE.md) for details.
 

@@ -13,12 +13,13 @@
 
 using System.Composition;
 using System.Composition.Convention;
+using BadEcho.Extensibility.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Primitives;
 using IConfigurationProvider = BadEcho.Configuration.IConfigurationProvider;
 using ConfigurationProvider = BadEcho.Configuration.ConfigurationProvider;
 
-namespace BadEcho.Extensibility.Hosting;
+namespace BadEcho.Extensibility.Extensions;
 
 /// <summary>
 /// Provides configuration data sourced from a hosted application's configuration.

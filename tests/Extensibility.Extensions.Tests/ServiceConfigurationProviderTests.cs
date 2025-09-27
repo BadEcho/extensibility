@@ -12,8 +12,9 @@
 // -----------------------------------------------------------------------
 
 using BadEcho.Configuration;
+using BadEcho.Extensibility.Hosting;
 
-namespace BadEcho.Extensibility.Hosting.Tests;
+namespace BadEcho.Extensibility.Extensions.Tests;
 
 public class ServiceConfigurationProviderTests
 {

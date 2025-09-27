@@ -16,7 +16,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\src\Extensibility.Hosting\BadEcho.Extensibility.Hosting.csproj" />
+		<ProjectReference Include="..\..\src\Extensibility.Extensions\BadEcho.Extensibility.Extensions.csproj" />
 		<ProjectReference Include="..\..\src\Extensibility\BadEcho.Extensibility.csproj" />
 	</ItemGroup>
 

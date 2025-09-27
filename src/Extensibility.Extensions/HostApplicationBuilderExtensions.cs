@@ -12,11 +12,12 @@
 // -----------------------------------------------------------------------
 
 using BadEcho.Extensibility.Configuration;
+using BadEcho.Extensibility.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using IConfigurationProvider = BadEcho.Configuration.IConfigurationProvider;
 
-namespace BadEcho.Extensibility.Hosting;
+namespace BadEcho.Extensibility.Extensions;
 
 /// <summary>
 /// Provides extension methods for integrating the Bad Echo Extensibility framework with a hosted application.

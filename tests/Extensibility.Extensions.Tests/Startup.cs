@@ -14,7 +14,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 
-namespace BadEcho.Extensibility.Hosting.Tests;
+namespace BadEcho.Extensibility.Extensions.Tests;
 
 public class Startup
 {

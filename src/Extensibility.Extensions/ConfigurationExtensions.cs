@@ -27,10 +27,10 @@ public static class ConfigurationExtensions
     /// Exposes the configuration for the host to the Bad Echo Extensibility framework.
     /// </summary>
     /// <param name="configuration">The <typeparamref name="TConfiguration"/> instance to expose.</param>
-    /// <returns>The current <see cref="TConfiguration"/> instance so that additional calls can be chained.</returns>
+    /// <returns>The current <typeparamref name="TConfiguration"/> instance so that additional calls can be chained.</returns>
     /// <typeparam name="TConfiguration">The type of <see cref="IConfiguration"/> being exposed.</typeparam>
     /// <remarks>
-    /// This accepts a generic parameter so that, in the event <typeparam name="TConfiguration"/> also implements something
+    /// This accepts a generic parameter so that, in the event <typeparamref name="TConfiguration"/> also implements something
     /// like <see cref="IConfigurationBuilder"/>, it can be used as part of a method chain.
     /// </remarks>
     public static TConfiguration AddExtensibility<TConfiguration>(this TConfiguration configuration)

@@ -20,8 +20,8 @@ public class Startup
 {
     public void ConfigureHostApplicationBuilder(IHostApplicationBuilder builder)
     {
-        builder.Configuration.AddJsonFile("appsettings.json", false, true);
-        
-        builder.AddExtensibility();
+        builder.Configuration
+               .AddExtensibility()
+               .AddJsonFile("appsettings.json", false, true);
     }
 }

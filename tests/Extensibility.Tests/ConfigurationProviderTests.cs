@@ -26,7 +26,7 @@ public class ConfigurationProviderTests
                       .SetBasePath(Directory.GetCurrentDirectory())
                       .AddJsonFile("test.json");
 
-        var configuration = builder.Build();
+        var configuration = builder.Build().GetSection(ExtensibilityConfiguration.SectionName);
 
         var extensibility = configuration.Get<ExtensibilityConfiguration>();
         Assert.NotNull(extensibility);
@@ -41,7 +41,7 @@ public class ConfigurationProviderTests
                       .SetBasePath(Directory.GetCurrentDirectory())
                       .AddJsonFile("test.json");
 
-        var configuration = builder.Build();
+        var configuration = builder.Build().GetSection(ExtensibilityConfiguration.SectionName);
 
         var contracts = configuration.GetSection("segmentedContracts")
                                      .Get<IEnumerable<ContractConfiguration>>();

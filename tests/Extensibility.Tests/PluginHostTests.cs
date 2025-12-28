@@ -59,7 +59,7 @@ public class PluginHostTests
                       .SetBasePath(Directory.GetCurrentDirectory())
                       .AddJsonFile("test.json");
 
-        var configurationRoot = builder.Build();
+        var configurationRoot = builder.Build().GetSection(ExtensibilityConfiguration.SectionName);
 
         var configuration = configurationRoot.Get<ExtensibilityConfiguration>();
         Assert.NotNull(configuration);

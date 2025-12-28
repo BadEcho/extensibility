@@ -38,7 +38,8 @@ public static class ConfigurationExtensions
     {
         Require.NotNull(configuration, nameof(configuration));
 
-        var pluginConfiguration = configuration.GetSection("Extensibility").Get<ExtensibilityConfiguration>()
+        var pluginConfiguration = configuration.GetSection(ExtensibilityConfiguration.SectionName)
+                                               .Get<ExtensibilityConfiguration>()
                                   ?? new ExtensibilityConfiguration
                                      {
                                          LoadPlugins = false

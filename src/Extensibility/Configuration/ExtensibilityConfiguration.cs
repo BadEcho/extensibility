@@ -22,6 +22,12 @@ namespace BadEcho.Extensibility.Configuration;
 public sealed class ExtensibilityConfiguration
 {
     /// <summary>
+    /// The name of the configuration section Extensibility framework settings are typically found in.
+    /// </summary>
+    public static string SectionName
+        => "Extensibility";
+
+    /// <summary>
     /// Gets or sets a value indicating if plugins are scanned for and loaded from a configured plugin directory.
     /// </summary>
     /// <remarks>

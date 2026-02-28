@@ -1,0 +1,15 @@
+<Solution>
+  <Folder Name="/shared/">
+    <Project Path="src/Core/src/Common/BadEcho.Common.csproj" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/Extensibility.Extensions/BadEcho.Extensibility.Extensions.csproj" />
+    <Project Path="src/Extensibility/BadEcho.Extensibility.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Extensibility.Extensions.Tests/BadEcho.Extensibility.Extensions.Tests.csproj" />
+    <Project Path="tests/Extensibility.Tests/BadEcho.Extensibility.Tests.csproj" />
+    <Project Path="tests/ExtensibilityPoint/BadEcho.ExtensibilityPoint.csproj" />
+    <Project Path="tests/Plugin/BadEcho.Plugin.csproj" />
+  </Folder>
+</Solution>

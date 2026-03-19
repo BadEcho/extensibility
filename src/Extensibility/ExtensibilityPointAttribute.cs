@@ -7,7 +7,7 @@
 //      GNU Affero General Public License v3.0.
 //
 //      See accompanying file LICENSE.md or a copy at:
-//      https://www.gnu.org/licenses/agpl-3.0.html 
+//      https://www.gnu.org/licenses/agpl-3.0.html
 // </copyright>
 // -----------------------------------------------------------------------
 

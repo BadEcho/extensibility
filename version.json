@@ -2,5 +2,10 @@
   "majorVersion": 1,
   "minorVersion": 1,
   "patchVersion": 1,
-  "prereleaseId": "beta"
+  "prereleaseId": "beta",
+  "latestRelease": {
+    "majorVersion": 1,
+    "minorVersion": 0,
+    "patchVersion": 1
+  }
 }

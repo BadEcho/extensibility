@@ -32,7 +32,7 @@ public sealed class FilterableAttribute : ExportAttribute, IFilterableMetadata
     /// <param name="familyId">The identity of the filterable family that the part being exported belongs to.</param>
     /// <param name="partType">The concrete type of the part being exported.</param>
     public FilterableAttribute(string familyId, Type partType)
-        : base(typeof(IFilterable))
+        : base(typeof(object))
     {
         Require.NotNull(familyId, nameof(familyId));
         Require.NotNull(partType, nameof(partType));

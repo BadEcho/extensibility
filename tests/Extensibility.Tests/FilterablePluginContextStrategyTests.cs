@@ -14,6 +14,7 @@
 using BadEcho.Extensibility.Configuration;
 using BadEcho.Extensibility.Hosting;
 using BadEcho.ExtensibilityPoint;
+using BadEcho.Extensions;
 using Xunit;
 
 namespace BadEcho.Extensibility.Tests;
@@ -35,7 +36,7 @@ public class FilterablePluginContextStrategyTests
         var parts = container.GetExports<IFilterableFakePart>().ToList();
 
         Assert.NotEmpty(parts);
-        Assert.All(parts, p => Assert.Equal(new Guid(fakeId), p.FamilyId));
+        Assert.All(parts, p => Assert.Equal(new Guid(fakeId), p.GetType().GetAttribute<FilterableAttribute>()?.FamilyId));
     }
 
     [Theory]
@@ -48,7 +49,7 @@ public class FilterablePluginContextStrategyTests
         var part = container.GetExport<IFilterableFakePart>();
 
         Assert.NotNull(part);
-        Assert.Equal(new Guid(fakeId), part.FamilyId);
+        Assert.Equal(new Guid(fakeId), part.GetType().GetAttribute<FilterableAttribute>()?.FamilyId);
     }
 
     [Fact]

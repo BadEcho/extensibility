@@ -20,11 +20,7 @@ namespace BadEcho.Plugin;
 
 [Export(typeof(IFilterableFakeDependency))]
 [Filterable(AlphaFamily.FamilyIdValue, typeof(AlphaFakeDependency))]
-public class AlphaFakeDependency : IFilterableFakeDependency
-{
-    public Guid FamilyId
-        => new(AlphaFamily.FamilyIdValue);
-}
+public class AlphaFakeDependency : IFilterableFakeDependency;
 
 [Export(typeof(IFilterableFakePartWithDependencies))]
 [Filterable(AlphaFamily.FamilyIdValue, typeof(AlphaFakePartWithDependencies))]
@@ -37,9 +33,6 @@ public class AlphaFakePartWithDependencies : IFilterableFakePartWithDependencies
     }
 
     public IFilterableFakeDependency Dependency { get; }
-
-    public Guid FamilyId
-        => new(AlphaFamily.FamilyIdValue);
 
     public int DoSomething()
     {
@@ -62,9 +55,6 @@ public class AlphaFakePartWithComposedDependencies : IFilterableFakePartWithComp
 
     public IFilterableFakeDependency Dependency { get; }
 
-    public Guid FamilyId
-        => new(AlphaFamily.FamilyIdValue);
-
     public int DoSomething()
     {
         return 0;
@@ -72,7 +62,7 @@ public class AlphaFakePartWithComposedDependencies : IFilterableFakePartWithComp
 
     [Export(typeof(IConventionProvider))]
     [Filterable(AlphaFamily.FamilyIdValue, typeof(LocalDependency))]
-    private class LocalDependency : DependencyRegistry<IFilterableFakeDependency>, IFilterable
+    private class LocalDependency : DependencyRegistry<IFilterableFakeDependency>
     {
         public LocalDependency()
             : base(DEPENDENCY_CONTRACT)
@@ -81,8 +71,6 @@ public class AlphaFakePartWithComposedDependencies : IFilterableFakePartWithComp
         /// <inheritdoc />
         public override IFilterableFakeDependency Dependency
             => LoadDependency();
-
-        public Guid FamilyId => new(AlphaFamily.FamilyIdValue);
     }
 }
 
@@ -100,10 +88,7 @@ public class AlphaFakePartWithNonFilterableDependencies : IFilterableFakePartWit
     }
 
     public IFakeDependency Dependency { get; }
-
-    public Guid FamilyId
-        => new(AlphaFamily.FamilyIdValue);
-
+    
     public int DoSomething()
     {
         return 0;
@@ -111,7 +96,7 @@ public class AlphaFakePartWithNonFilterableDependencies : IFilterableFakePartWit
 
     [Export(typeof(IConventionProvider))]
     [Filterable(AlphaFamily.FamilyIdValue, typeof(LocalDependency))]
-    private class LocalDependency : DependencyRegistry<IFakeDependency>, IFilterable
+    private class LocalDependency : DependencyRegistry<IFakeDependency>
     {
         public LocalDependency()
             : base(DEPENDENCY_CONTRACT)
@@ -120,7 +105,5 @@ public class AlphaFakePartWithNonFilterableDependencies : IFilterableFakePartWit
         /// <inheritdoc />
         public override IFakeDependency Dependency
             => LoadDependency();
-
-        public Guid FamilyId => new(AlphaFamily.FamilyIdValue);
     }
 }

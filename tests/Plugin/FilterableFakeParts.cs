@@ -23,9 +23,6 @@ namespace BadEcho.Plugin;
 [Filterable(AlphaFamily.FamilyIdValue, typeof(AlphaFakePart))]
 public class AlphaFakePart : IFilterableFakePart
 {
-    public Guid FamilyId
-        => new(AlphaFamily.FamilyIdValue);
-
     public int DoSomething()
         => 54;
 }
@@ -34,9 +31,6 @@ public class AlphaFakePart : IFilterableFakePart
 [Filterable(BetaFamily.FamilyIdValue, typeof(BetaFakePart))]
 public class BetaFakePart : IFilterableFakePart
 {
-    public Guid FamilyId
-        => new(BetaFamily.FamilyIdValue);
-
     public int DoSomething()
         => 29290892;
 }
@@ -45,9 +39,6 @@ public class BetaFakePart : IFilterableFakePart
 [Filterable(DeltaFamily.FamilyIdValue, typeof(DeltaFakePart))]
 public class DeltaFakePart : IFilterableFakePart
 {
-    public Guid FamilyId
-        => new(DeltaFamily.FamilyIdValue);
-
     public int DoSomething()
         => -1;
 }
@@ -58,9 +49,6 @@ public sealed class SharedGammaFakePart : IFilterableFakePart
 {
     public int DoSomething()
         => 0;
-
-    public Guid FamilyId
-        => new(GammaFamily.FamilyIdValue);
 
     /// <suppressions>
     /// ReSharper disable UnusedType.Local

@@ -49,12 +49,12 @@ public interface IFakePartWithComposedDependencies
     IFakeDependency Dependency { get; }
 }
 
-public interface IFilterableFakePart : IFilterable
+public interface IFilterableFakePart
 {
     int DoSomething();
 }
 
-public interface IFilterableFakeDependency : IFilterable;
+public interface IFilterableFakeDependency;
 
 public interface IFilterableFakePartWithDependencies : IFilterableFakePart
 {

@@ -66,7 +66,7 @@ internal sealed class FilterablePluginContextStrategy : IPluginContextStrategy
     {
         using (var globalContainer = globalConfiguration.CreateContainer())
         {
-            var filterableParts = globalContainer.GetExports<Lazy<IFilterable, FilterableMetadataView>>();
+            var filterableParts = globalContainer.GetExports<Lazy<object, FilterableMetadataView>>();
                 
             return filterableParts
                    .Where(filterablePart =>

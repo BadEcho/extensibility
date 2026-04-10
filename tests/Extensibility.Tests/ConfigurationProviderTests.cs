@@ -58,7 +58,7 @@ public class ConfigurationProviderTests
 
         Assert.Equal("ISegmentedContract", contract.Name);
         Assert.NotEmpty(contract.RoutablePlugins);
-        Assert.Equal(2, contract.RoutablePlugins.Count());
+        Assert.Equal(2, contract.RoutablePlugins.Count);
 
         var firstPlugin = contract.RoutablePlugins.First();
         var secondPlugin = contract.RoutablePlugins.Skip(1).First();

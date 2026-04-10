@@ -166,7 +166,7 @@ public static class PluginHost
         {
             throw new ArgumentException(
                 Strings.NoExportFoundForFamily
-                          .InvariantFormat(typeof(TContract), Store.FilterableFamilies[familyId].Name),
+                          .InvariantFormat(typeof(TContract), familyId),
                 nameof(familyId));
         }
 
@@ -174,8 +174,8 @@ public static class PluginHost
         {
             Logger.Warning(
                 Strings.MultipleExportsFoundForFamily
-                          .InvariantFormat(typeof(TContract), Store.FilterableFamilies[familyId].Name));
-        }
+                          .InvariantFormat(typeof(TContract), familyId));
+        }   
 
         return parts[0];
     }
@@ -308,7 +308,7 @@ public static class PluginHost
     /// <param name="familyId">The identifier to check.</param>
     /// <returns>True if <c>familyId</c> describes a known filterable family; otherwise, false.</returns>
     public static bool IsFilterable(Guid familyId)
-        => Store.FilterableFamilies.ContainsKey(familyId);
+        => Store.FilterableFamilies.Contains(familyId);
 
     /// <summary>
     /// Updates the active configuration in use by the plugin host, cleaning up and re-initializing the inner

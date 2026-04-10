@@ -166,7 +166,7 @@
     <value>The file '{0}' being scanned for pluggable exports failed to load.</value>
   </data>
   <data name="FamilyIdNotRegistered" xml:space="preserve">
-    <value>'{0}' is not a registered filterable family identity value. Registration of a filterable family requires a FilterableFamily export action.</value>
+    <value>'{0}' is not a registered filterable family identity value. Registration of a filterable family requires at least one Filterable export action.</value>
   </data>
   <data name="FamilyIdNotValid" xml:space="preserve">
     <value>'{0}' is not a valid filterable family identity value. Values must be parseable as standard globally unique identifiers.</value>

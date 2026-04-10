@@ -127,10 +127,11 @@ public class GlobalPluginContextStrategyTests
     }
 
     [Fact]
-    public void GetExports_IFilterableFamily_ValidCount()
+    public void GetExports_FilterableFamilies_ValidCount()
     {
         var container = _strategy.CreateContainer();
-        var families = container.GetExports<Lazy<IFilterableFamily, FilterableFamilyMetadataView>>();
+        var families = container.GetExports<Lazy<object, FilterableMetadataView>>().Select(p => p.Metadata.FamilyId)
+                                .Distinct();
 
         Assert.Equal(4, families.Count());
     }

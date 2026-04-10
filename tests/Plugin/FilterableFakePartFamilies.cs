@@ -11,59 +11,26 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
-using BadEcho.Extensibility;
 using BadEcho.Extensibility.Tests;
 
 namespace BadEcho.Plugin;
 
-[FilterableFamily(FamilyIdValue, NAME)]
-public class AlphaFamily : IFilterableFamily
+public class AlphaFamily
 {
     internal const string FamilyIdValue = FakeFilterableIds.AlphaFakeIdValue;
-    private const string NAME = "Alpha";
-
-    public Guid FamilyId
-        => new(FamilyIdValue);
-
-    public string Name
-        => NAME;
 }
 
-[FilterableFamily(FamilyIdValue, NAME)]
-public class BetaFamily : IFilterableFamily
+public class BetaFamily 
 {
     internal const string FamilyIdValue = FakeFilterableIds.BetaFakeIdValue;
-    private const string NAME = "Beta";
-
-    public Guid FamilyId
-        => new(FamilyIdValue);
-
-    public string Name
-        => NAME;
 }
 
-[FilterableFamily(FamilyIdValue, NAME)]
-public class DeltaFamily : IFilterableFamily
+public class DeltaFamily
 {
     internal const string FamilyIdValue = FakeFilterableIds.DeltaFakeIdValue;
-    private const string NAME = "Delta";
-
-    public Guid FamilyId
-        => new(FamilyIdValue);
-
-    public string Name
-        => NAME;
 }
 
-[FilterableFamily(FamilyIdValue, NAME)]
-public class GammaFamily : IFilterableFamily
+public class GammaFamily
 {
     internal const string FamilyIdValue = FakeFilterableIds.GammaFakeIdValue;
-    private const string NAME = "Gamma";
-
-    public Guid FamilyId
-        => new(FamilyIdValue);
-
-    public string Name
-        => NAME;
 }

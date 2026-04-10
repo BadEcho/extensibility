@@ -35,7 +35,7 @@ internal sealed class PluginStore : IDisposable
 
     private readonly Lazy<PluginContext> _globalContext;
     private readonly Lazy<LazyConcurrentDictionary<Guid, PluginContext>> _filterableContexts;
-    private readonly Lazy<IReadOnlyDictionary<Guid, IFilterableFamilyMetadata>> _filterableFamilies;
+    private readonly Lazy<IReadOnlyCollection<Guid>> _filterableFamilies;
 
     private bool _disposed;
 
@@ -56,7 +56,7 @@ internal sealed class PluginStore : IDisposable
             () => new PluginContext(new GlobalPluginContextStrategy(configuration)),
             LAZY_MODE);
 
-        _filterableFamilies = new Lazy<IReadOnlyDictionary<Guid, IFilterableFamilyMetadata>>(
+        _filterableFamilies = new Lazy<IReadOnlyCollection<Guid>>(
             InitializeFilterableFamilies, LAZY_MODE);
 
         _filterableContexts = new Lazy<LazyConcurrentDictionary<Guid, PluginContext>>(
@@ -86,9 +86,9 @@ internal sealed class PluginStore : IDisposable
         => _filterableContexts.Value;
 
     /// <summary>
-    /// Gets a dictionary containing filterable family identifiers paired with metadata describing the family.
+    /// Gets a collection of all filterable family identifiers.
     /// </summary>
-    public IReadOnlyDictionary<Guid, IFilterableFamilyMetadata> FilterableFamilies
+    public IReadOnlyCollection<Guid> FilterableFamilies
         => _filterableFamilies.Value;
 
     /// <summary>
@@ -146,11 +146,12 @@ internal sealed class PluginStore : IDisposable
         _disposed = true;
     }
         
-    private Dictionary<Guid, IFilterableFamilyMetadata> InitializeFilterableFamilies()
+    private List<Guid> InitializeFilterableFamilies()
     {
-        return GlobalContext.Load<IFilterableFamily, FilterableFamilyMetadataView>()
-                            .Select(f => f.Metadata)
-                            .ToDictionary<IFilterableFamilyMetadata, Guid>(kv => kv.FamilyId);
+        return GlobalContext.Load<object, FilterableMetadataView>()
+                            .Select(f => f.Metadata.FamilyId)
+                            .Distinct()
+                            .ToList();
     }
 
     private LazyConcurrentDictionary<Guid, PluginContext> InitializeFilterableContexts()
@@ -158,8 +159,8 @@ internal sealed class PluginStore : IDisposable
         var filterableContexts
             = new LazyConcurrentDictionary<Guid, PluginContext>(LAZY_MODE);
 
-        IEnumerable<Guid> familyIds = GlobalContext.Load<IFilterableFamily, FilterableFamilyMetadataView>()
-                                                   .Select(f => f.Metadata.FamilyId);
+        IEnumerable<Guid> familyIds = FilterableFamilies;
+
         foreach (var familyId in familyIds)
         {
             var filterableStrategy = new FilterablePluginContextStrategy(_configuration, familyId);

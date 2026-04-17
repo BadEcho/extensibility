@@ -103,8 +103,48 @@ public static class PluginHost
         Require.NotNull(value, nameof(value));
         PluginContext context = Store.GlobalContext;
 
-        return DependencyRegistry<TDependency>
-            .ExecuteWhileArmed(value, context.Load<TContract>);
+        return ArmedLoad<TContract, TDependency>(value, context);
+    }
+
+    /// <summary>
+    /// Arms the host with the provided dependency value so that it can be injected into plugin-provided exports that require it
+    /// and fulfill the specified generic contract type that belongs to the specified filterable family.
+    /// </summary>
+    /// <typeparam name="TContract">The contract type whose export should be loaded.</typeparam>
+    /// <typeparam name="TDependency">
+    /// The type of object depended upon by the plugin-provided export fulfilling the specified generic contract type.
+    /// </typeparam>
+    /// <param name="value">The dependency value to arm the host with.</param>
+    /// <param name="familyId">Identifies the filterable family that the plugin-provided export must belong to.</param>
+    /// <returns>
+    /// An exported <typeparamref name="TContract"/> value injected with any required <typeparamref name="TDependency"/> value.
+    /// </returns>
+    public static TContract ArmedLoad<TContract, TDependency>(TDependency value, Guid familyId)
+    {
+        Require.NotNull(value, nameof(value));
+
+        if (!IsFilterable(familyId))
+            throw new ArgumentException(Strings.FamilyIdNotRegistered.InvariantFormat(familyId), nameof(familyId));
+
+        PluginContext context = Store.FilterableContexts[familyId];
+
+        var parts = ArmedLoad<TContract, TDependency>(value, context).ToList();
+
+        if (parts.IsEmpty())
+        {
+            throw new ArgumentException(
+                Strings.NoExportFoundForFamily
+                       .InvariantFormat(typeof(TContract), familyId));
+        }
+
+        if (!parts.IsSingle())
+        {
+            Logger.Warning(
+                Strings.MultipleExportsFoundForFamily
+                       .InvariantFormat(typeof(TContract), familyId));
+        }
+
+        return parts[0];
     }
 
     /// <summary>
@@ -382,6 +422,12 @@ public static class PluginHost
         }
 
         return uniquePart;
+    }
+
+    private static IEnumerable<TContract> ArmedLoad<TContract, TDependency>(TDependency value, PluginContext context)
+    {
+        return DependencyRegistry<TDependency>
+            .ExecuteWhileArmed(value, context.Load<TContract>);
     }
 
     private static void SelfInject<TDependency>(object pluggablePart, PluginContext context)

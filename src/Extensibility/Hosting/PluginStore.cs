@@ -1,7 +1,7 @@
 ﻿// -----------------------------------------------------------------------
 // <copyright>
 //      Created by Matt Weber <matt@badecho.com>
-//      Copyright @ 2025 Bad Echo LLC. All rights reserved.
+//      Copyright @ 2026 Bad Echo LLC. All rights reserved.
 //
 //      Bad Echo Technologies are licensed under the
 //      GNU Affero General Public License v3.0.
@@ -132,9 +132,10 @@ internal sealed class PluginStore : IDisposable
 
         if (_filterableContexts.IsValueCreated)
         {
-            foreach (var idContextPair in _filterableContexts.Value)
+            foreach (var id in _filterableContexts.Value.Keys)
             {
-                var lazyContext = idContextPair.Value;
+                if (!_filterableContexts.Value.TryGetLazy(id, out var lazyContext))
+                    continue;
 
                 if (!lazyContext.IsValueCreated)
                     continue;

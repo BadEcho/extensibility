@@ -57,10 +57,6 @@ internal sealed class ServiceConfigurationProvider : ConfigurationProvider
     /// Provides a convention provider that allows for this configuration provider to be armed with an injected
     /// <see cref="IConfiguration"/> instance.
     /// </summary>
-    /// <remarks>
-    /// Because this configures the exported configuration provider to be a shared singleton, the configuration provider
-    /// only needs to be armed with the injected <see cref="IConfiguration"/> instance once.
-    /// </remarks>
     /// <suppressions>
     /// ReSharper disable ClassNeverInstantiated.Local
     /// </suppressions>
